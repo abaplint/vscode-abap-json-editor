@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import {Utils} from "vscode-uri";
+import { Parser } from "./parser";
 
 // https://stackoverflow.com/questions/69333492/vscode-create-a-document-in-memory-with-uri-for-automated-testing
 // https://code.visualstudio.com/api/extension-guides/virtual-documents
@@ -69,23 +70,8 @@ export class JsonFileSystemProvider implements vscode.FileSystemProvider {
       return;
     }
 
-    let end: vscode.Position | undefined = undefined;
-    let indentation = 0;
-    let startCol = 0;
-    {
-      const lines = found.getText().split("\n");
-      indentation = lines[file.startRow].search(/\S/) + 2;
-      startCol = lines[file.startRow].search(/`{/);
-      for (let index = file.startRow; index < lines.length; index++) {
-        const line = lines[index];
-        const trimmed = line.trimEnd();
-        if (trimmed.endsWith(".")) {
-          end = new vscode.Position(index, trimmed.length);
-          break;
-        }
-      }
-    }
-    if (end === undefined) {
+    const startAndEnd = Parser.findStartAndEnd(file.startRow, found.getText());
+    if (startAndEnd.end === undefined) {
       console.dir("end not found");
       return;
     }
@@ -98,15 +84,15 @@ export class JsonFileSystemProvider implements vscode.FileSystemProvider {
         if (index === 0) {
           output += "`" + line + "` && |\\n| &&\n";
         } else if (index === lines.length - 1) {
-          output += " ".repeat(indentation) + "`" + line + "`.";
+          output += " ".repeat(startAndEnd.indentation) + "`" + line + "`.";
         } else {
-          output += " ".repeat(indentation) + "`" + line + "` && |\\n| &&\n";
+          output += " ".repeat(startAndEnd.indentation) + "`" + line + "` && |\\n| &&\n";
         }
       }
     }
 
     const edit = new vscode.WorkspaceEdit();
-    edit.replace(found?.uri, new vscode.Range(new vscode.Position(file.startRow, startCol), end), output);
+    edit.replace(found?.uri, new vscode.Range(new vscode.Position(file.startRow, startAndEnd.startCol), startAndEnd.end), output);
     vscode.workspace.applyEdit(edit);
   }
 
