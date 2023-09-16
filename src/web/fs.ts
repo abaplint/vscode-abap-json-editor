@@ -19,6 +19,8 @@ export const JSON_FILE_SYSTEM_PROVIDER_SCHEME = "abapJsonFs";
 
 export class JsonFileSystemProvider implements vscode.FileSystemProvider {
   public onDidChangeFile: vscode.Event<vscode.FileChangeEvent[]>;
+  private readonly utf8Decoder = new TextDecoder('utf-8');
+  private readonly utf8encoder = new TextEncoder();
 
   public static files: {[name: string]: {
     target: string,
@@ -55,7 +57,7 @@ export class JsonFileSystemProvider implements vscode.FileSystemProvider {
   }
 
   public readFile(uri: vscode.Uri): Uint8Array | Thenable<Uint8Array> {
-    return Buffer.from(JsonFileSystemProvider.files[Utils.basename(uri)].contents);
+    return this.utf8encoder.encode(JsonFileSystemProvider.files[Utils.basename(uri)].contents);
   }
 
   public static update(uri: vscode.Uri, updatedJson: string) {
@@ -109,7 +111,7 @@ export class JsonFileSystemProvider implements vscode.FileSystemProvider {
   }
 
   public writeFile(uri: vscode.Uri, content: Uint8Array, _options: { readonly create: boolean; readonly overwrite: boolean; }): void | Thenable<void> {
-    JsonFileSystemProvider.update(uri, Buffer.from(content).toString());
+    JsonFileSystemProvider.update(uri, this.utf8Decoder.decode(content));
   }
 
   public delete(_uri: vscode.Uri, _options: { readonly recursive: boolean; }): void | Thenable<void> {
