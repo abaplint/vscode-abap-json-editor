@@ -1,4 +1,5 @@
 import { CancellationToken, CodeAction, CodeActionContext, CodeActionKind, CodeActionProvider, Command, ProviderResult, Range, Selection, TextDocument } from "vscode";
+import { EDIT_COMMAND } from "./extension";
 
 export class Provider implements CodeActionProvider {
 
@@ -15,7 +16,7 @@ export class Provider implements CodeActionProvider {
         kind: CodeActionKind.Source,
         command: {
           title: "Edit as JSON",
-          command: "abap-json-editor.edit",
+          command: EDIT_COMMAND,
           arguments: [{textDocument: document, range: range}],
         },
       });
