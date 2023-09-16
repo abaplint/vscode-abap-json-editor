@@ -2,7 +2,7 @@
   "name": "abap-json-editor",
   "displayName": "abap-json-editor",
   "description": "Edit JSON embedded in ABAP strings",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.82.0"
   },
