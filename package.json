@@ -18,7 +18,7 @@
   "author": "Lars Hvam",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abaplint/vscode-abaplint"
+    "url": "https://github.com/abaplint/vscode-abap-json-editor"
   },
   "extensionDependencies": [
     "larshp.vscode-abap"
