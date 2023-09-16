@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
 
 export class Parser {
@@ -35,6 +36,21 @@ export class Parser {
           output += " ".repeat(indentation) + "`" + line + "` && |\\n| &&\n";
         }
       }
+    }
+    return output;
+  }
+
+  public static ABAPtoJSON(abap: string, startRow: number) {
+    const startAndEnd = Parser.findStartAndEnd(startRow, abap);
+    if (startAndEnd.end === undefined) {
+      return "error parsing, ABAPtoJSON()";
+    }
+    let output = "";
+    const lines = abap.split("\n");
+    for (let index = startRow; index <= startAndEnd.end.line; index++) {
+      const line = lines[index];
+      const startCol = line.indexOf("`") + 1;
+      output += line.substring(startCol).trimEnd().replace("` && |\\n| &&", "\n").replace("`.", "");
     }
     return output;
   }

@@ -114,7 +114,7 @@ export async function editJson(params: {textDocument: vscode.TextDocument, range
 
   JsonFileSystemProvider.files[name] = {
     target: params.textDocument.uri.toString(),
-    contents: `{\n  "hello": 2\n}`,   // todo, analyze, source.getText();
+    contents: Parser.ABAPtoJSON(source.getText(), params.range.start.line),
     startRow: params.range.start.line,
   };
 
