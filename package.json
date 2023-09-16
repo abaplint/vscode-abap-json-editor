@@ -4,7 +4,7 @@
   "description": "Edit JSON embedded in ABAP strings",
   "version": "0.0.3",
   "engines": {
-    "vscode": "^1.82.0"
+    "vscode": "^1.81.0"
   },
   "categories": [
     "Other"
