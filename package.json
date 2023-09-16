@@ -1,0 +1,57 @@
+{
+  "name": "abap-json-editor",
+  "displayName": "abap-json-editor",
+  "description": "Edit JSON embedded in ABAP strings",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:abap"
+  ],
+  "browser": "./dist/web/extension.js",
+  "publisher": "larshp",
+	"keywords": [
+		"abap",
+		"SAP"
+	],
+  "contributes": {
+    "commands": [
+      {
+        "command": "abap-json-editor.paste",
+        "category": "abap-json-editor",
+        "title": "Paste JSON from clipboard into ABAP"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest": "npm run compile-web",
+    "vscode:prepublish": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts",
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "@types/vscode": "^1.82.0",
+    "@types/webpack-env": "^1.18.1",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vscode/test-web": "^0.0.45",
+    "assert": "^2.1.0",
+    "eslint": "^8.49.0",
+    "mocha": "^10.2.0",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "vscode-uri": "^3.0.7",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
