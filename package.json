@@ -9,7 +9,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:abap"
+  ],
   "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
@@ -30,19 +32,20 @@
     "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
   },
   "devDependencies": {
-    "@types/vscode": "^1.82.0",
     "@types/mocha": "^10.0.1",
-    "eslint": "^8.49.0",
+    "@types/vscode": "^1.82.0",
+    "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
     "@vscode/test-web": "^0.0.45",
-    "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "@types/webpack-env": "^1.18.1",
     "assert": "^2.1.0",
-    "process": "^0.11.10"
+    "eslint": "^8.49.0",
+    "mocha": "^10.2.0",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "vscode-uri": "^3.0.7",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
