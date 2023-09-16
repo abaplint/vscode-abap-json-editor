@@ -13,6 +13,11 @@
     "onLanguage:abap"
   ],
   "browser": "./dist/web/extension.js",
+  "publisher": "larshp",
+	"keywords": [
+		"abap",
+		"SAP"
+	],
   "contributes": {
     "commands": [
       {
