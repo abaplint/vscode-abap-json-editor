@@ -76,20 +76,7 @@ export class JsonFileSystemProvider implements vscode.FileSystemProvider {
       return;
     }
 
-    let output = "";
-    {
-      const lines = updatedJson.split("\n");
-      for (let index = 0; index < lines.length; index++) {
-        const line = lines[index];
-        if (index === 0) {
-          output += "`" + line + "` && |\\n| &&\n";
-        } else if (index === lines.length - 1) {
-          output += " ".repeat(startAndEnd.indentation) + "`" + line + "`.";
-        } else {
-          output += " ".repeat(startAndEnd.indentation) + "`" + line + "` && |\\n| &&\n";
-        }
-      }
-    }
+    const output = Parser.buildABAP(updatedJson, startAndEnd.indentation);
 
     const edit = new vscode.WorkspaceEdit();
     edit.replace(found?.uri, new vscode.Range(new vscode.Position(file.startRow, startAndEnd.startCol), startAndEnd.end), output);

@@ -20,4 +20,22 @@ export class Parser {
 
     return {end, indentation, startCol};
   }
+
+  public static buildABAP(updatedJson: string, indentation: number) {
+    let output = "";
+    {
+      const lines = updatedJson.split("\n");
+      for (let index = 0; index < lines.length; index++) {
+        const line = lines[index];
+        if (index === 0) {
+          output += "`" + line + "` && |\\n| &&\n";
+        } else if (index === lines.length - 1) {
+          output += " ".repeat(indentation) + "`" + line + "`.";
+        } else {
+          output += " ".repeat(indentation) + "`" + line + "` && |\\n| &&\n";
+        }
+      }
+    }
+    return output;
+  }
 }
