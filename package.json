@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/abaplint/vscode-abaplint"
   },
+  "extensionDependencies": [
+		"larshp.vscode-abap"
+	],
   "keywords": [
     "abap",
     "SAP"
