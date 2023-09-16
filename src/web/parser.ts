@@ -54,4 +54,20 @@ export class Parser {
     }
     return output;
   }
+
+  public static JSONtoABAP(json: string) {
+    let output = "";
+    const lines = json.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trimEnd();
+      if (i === 0) {
+        output += "DATA(lv_json) = `" + line + "` && |\\n| &&\n";
+      } else if (i === lines.length - 1) {
+        output += "  `" + line + "`.";
+      } else {
+        output += "  `" + line + "` && |\\n| &&\n";
+      }
+    }
+    return output;
+  }
 }

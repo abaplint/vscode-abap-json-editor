@@ -16,8 +16,9 @@
   "contributes": {
     "commands": [
       {
-        "command": "abap-json-editor.helloWorld",
-        "title": "Hello World"
+        "command": "abap-json-editor.paste",
+        "category": "abap-json-editor",
+        "title": "Paste JSON from clipboard into ABAP"
       }
     ]
   },
