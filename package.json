@@ -2,7 +2,7 @@
   "name": "abap-json-editor",
   "displayName": "abap-json-editor",
   "description": "Edit JSON embedded in ABAP strings",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -21,8 +21,8 @@
     "url": "https://github.com/abaplint/vscode-abaplint"
   },
   "extensionDependencies": [
-		"larshp.vscode-abap"
-	],
+    "larshp.vscode-abap"
+  ],
   "keywords": [
     "abap",
     "SAP"
