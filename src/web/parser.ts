@@ -50,7 +50,7 @@ export class Parser {
     for (let index = startRow; index <= startAndEnd.end.line; index++) {
       const line = lines[index];
       const startCol = line.indexOf("`") + 1;
-      output += line.substring(startCol).trimEnd().replace("` && |\\n| &&", "\n").replace("`.", "");
+      output += line.substring(startCol).trimEnd().replace("` && |\\n| &&", "\n").replace("` &&", "\n").replace("`.", "");
     }
     return output;
   }
